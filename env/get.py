@@ -21,8 +21,9 @@ driver.find_element_by_xpath(
 	'//*[@id="btnHalalSearch"]').click() 
 
 # Total pages: 326
+# Page 326 needs to be handled differently due to formattting
 i=1
-while i < 327:
+while i < 326:
     # Get page content
     print('Pushing Page: ' + str(i))
 
