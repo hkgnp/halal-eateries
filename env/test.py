@@ -8,7 +8,7 @@ import time
 
 # create instance of Chrome webdriver
 options = Options()
-options.headless = False
+options.headless = True;
 driver = webdriver.Chrome(options = options) 
 driver.get("https://www.muis.gov.sg/Halal/Halal-Certification/Certified-Eating-Establishments#") 
 
