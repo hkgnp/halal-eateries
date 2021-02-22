@@ -22,17 +22,16 @@ driver.find_element_by_xpath(
 	'//*[@id="btnHalalSearch"]').click() 
 
 i=1
-while i < 3:
+while i < 2:
     # Get page content
     print(i)
     results = driver.find_element_by_xpath('//*[@id="results"]/div')
     soup = BeautifulSoup(results.get_attribute('innerHTML'), 'html.parser')
     driver.implicitly_wait(10)
     output = soup.find_all("p")
-    print(output)
-    with open("output1.html", "a") as file:
+    with open("halal-eateries.html", "a") as file:
         file.write(str(output))
     page = f"//*[@id='{i+1}']"
     driver.find_element_by_xpath(page).click()
-    time.sleep(5)
+    time.sleep(6)
     i+=1
