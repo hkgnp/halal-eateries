@@ -12,7 +12,7 @@ options.headless = True;
 driver = webdriver.Chrome(options = options) 
 driver.get("https://www.muis.gov.sg/Halal/Halal-Certification/Certified-Eating-Establishments#") 
 
-driver.implicitly_wait(100)
+driver.implicitly_wait(10)
 
 # enter asterisk 
 driver.find_element_by_xpath('//*[@id="txtHalalSearch"]').send_keys('*') 
@@ -21,19 +21,18 @@ driver.find_element_by_xpath('//*[@id="txtHalalSearch"]').send_keys('*')
 driver.find_element_by_xpath( 
 	'//*[@id="btnHalalSearch"]').click() 
 
-# Wait 200ms
-# driver.implicitly_wait(8000)
-
 i=1
 while i < 3:
     # Get page content
-    driver.implicitly_wait(20000)
-    results = driver.find_element_by_class_name('search-result')
+    print(i)
+    results = driver.find_element_by_xpath('//*[@id="results"]/div')
     soup = BeautifulSoup(results.get_attribute('innerHTML'), 'html.parser')
+    driver.implicitly_wait(10)
     output = soup.find_all("p")
+    print(output)
     with open("output1.html", "a") as file:
         file.write(str(output))
     page = f"//*[@id='{i+1}']"
     driver.find_element_by_xpath(page).click()
+    time.sleep(5)
     i+=1
-    
