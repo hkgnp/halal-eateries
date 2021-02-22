@@ -37,7 +37,7 @@ while i < 327:
     output = soup.find_all("p")
 
     # Output to html file
-    with open("halal-eateries.html", "a") as file:
+    with open("halal-eateries-html.html", "a") as file:
         file.write(str(output))
 
     # Prepare to click to next page
