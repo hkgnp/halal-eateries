@@ -23,27 +23,45 @@ driver.find_element_by_xpath(
 # Total pages: 326
 i=1
 while i < 327:
-    # Get page content
-    print('Pushing Page: ' + str(i))
+    if i == 326:
+        # Get page content
+        print('Pushing Page: ' + str(i))
 
-    # Get results div
-    results = driver.find_element_by_xpath('//*[@id="results"]/div')
+        # Get results div
+        results = driver.find_element_by_xpath('//*[@id="results"]/div')
 
-    # Use BS to parse results
-    soup = BeautifulSoup(results.get_attribute('innerHTML'), 'html.parser')
-    driver.implicitly_wait(10)
+        # Use BS to parse results
+        soup = BeautifulSoup(results.get_attribute('innerHTML'), 'html.parser')
+        driver.implicitly_wait(10)
 
-    # Use BS to get only p tags
-    output = soup.find_all("p")
+        # Use BS to get only p tags
+        output = soup.find_all("p")
 
-    # Output to html file
-    with open("halal-eateries-html.html", "a") as file:
-        file.write(str(output))
+        # Output to html file
+        with open("halal-eateries-html.html", "a") as file:
+            file.write(str(output))
 
-    # Prepare to click to next page
-    page = f"//*[@id='{i+1}']"
-    driver.find_element_by_xpath(page).click()
+    else:
+        print('Pushing Page: ' + str(i))
 
-    # Important as next page results take time to load
-    time.sleep(8)
-    i+=1
+        # Get results div
+        results = driver.find_element_by_xpath('//*[@id="results"]/div')
+
+        # Use BS to parse results
+        soup = BeautifulSoup(results.get_attribute('innerHTML'), 'html.parser')
+        driver.implicitly_wait(10)
+
+        # Use BS to get only p tags
+        output = soup.find_all("p")
+
+        # Output to html file
+        with open("halal-eateries-html.html", "a") as file:
+            file.write(str(output))
+
+        # Prepare to click to next page
+        page = f"//*[@id='{i+1}']"
+        driver.find_element_by_xpath(page).click()
+
+        # Important as next page results take time to load
+        time.sleep(8)
+        i+=1
